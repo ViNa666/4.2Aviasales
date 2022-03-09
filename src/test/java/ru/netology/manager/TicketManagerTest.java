@@ -35,7 +35,7 @@ class TicketManagerTest {
         String to = "HAV";
 
         Ticket[] expected = {};
-        Ticket[] actual = manager.search(from, to);
+        Ticket[] actual = manager.findAll(from, to);
 
         assertArrayEquals(actual, expected);
 
@@ -56,7 +56,7 @@ class TicketManagerTest {
         String to = "HAV";
 
         Ticket[] expected = {};
-        Ticket[] actual = manager.search(from, to);
+        Ticket[] actual = manager.findAll(from, to);
 
         assertArrayEquals(actual, expected);
 
@@ -76,7 +76,7 @@ class TicketManagerTest {
         String to = "CCC";
 
         Ticket[] expected = {};
-        Ticket[] actual = manager.search(from, to);
+        Ticket[] actual = manager.findAll(from, to);
 
         assertArrayEquals(actual, expected);
     }
@@ -95,7 +95,7 @@ class TicketManagerTest {
         String to = "VRA";
 
         Ticket[] expected = {ticket2};
-        Ticket[] actual = manager.search(from, to);
+        Ticket[] actual = manager.findAll(from, to);
 
         assertArrayEquals(actual, expected);
     }
@@ -114,7 +114,7 @@ class TicketManagerTest {
         String to = "CCC";
 
         Ticket[] expected = {ticket4, ticket1, ticket5};
-        Ticket[] actual = manager.search(from, to);
+        Ticket[] actual = manager.findAll(from, to);
 
 
 

@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class TicketManager {
     private TicketRepository repository;
 
-    public Ticket[] search(String from, String to) {
+    public Ticket[] findAll(String from, String to) {
         Ticket[] result = new Ticket[0];
         for (Ticket item : repository.getAll()) {
             if (matches(item, from, to)) {
@@ -26,7 +26,7 @@ public class TicketManager {
 
 
                 result = tmp;
-                Arrays.sort(tmp);
+                Arrays.sort(result);
 
             }
         }
