@@ -11,8 +11,6 @@ public class TicketRepository {
     private Ticket[] items = new Ticket[0];
 
 
-
-
     public void add(Ticket item) {
         int length = items.length + 1;
         Ticket[] tmp = new Ticket[length];
@@ -26,6 +24,7 @@ public class TicketRepository {
     public Ticket[] getAll() {
         return items;
     }
+
     public Ticket[] removeById(int id) {
         int length = items.length - 1;
         Ticket[] tmp = new Ticket[length];
@@ -40,7 +39,6 @@ public class TicketRepository {
 
         return tmp;
     }
-
 
 
 }

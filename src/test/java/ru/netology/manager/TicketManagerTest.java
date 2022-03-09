@@ -3,22 +3,22 @@ package ru.netology.manager;
 import org.junit.jupiter.api.Test;
 import ru.netology.repository.TicketRepository;
 import ru.netology.ticket.Ticket;
+import ru.netology.ticket.TicketDurationComparator;
 
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class TicketManagerTest {
     private TicketRepository repository = new TicketRepository();
     private TicketManager manager = new TicketManager(repository);
 
-    Ticket ticket1 = new Ticket(1, 50_000, "LED", "CCC", 720);
+    Ticket ticket1 = new Ticket(1, 50_000, "LED", "CCC", 800);
     Ticket ticket2 = new Ticket(2, 30_000, "SVO", "VRA", 600);
     Ticket ticket3 = new Ticket(3, 35_000, "SVO", "CCC", 660);
     Ticket ticket4 = new Ticket(4, 21_000, "LED", "CCC", 750);
-    Ticket ticket5 = new Ticket(5, 75_000, "LED", "CCC", 800);
+    Ticket ticket5 = new Ticket(5, 75_000, "LED", "CCC", 620);
     Ticket ticket6 = new Ticket(6, 100_000, "SVO", "CCC", 611);
 
+    TicketDurationComparator comparator = new TicketDurationComparator();
 
 
     @Test
@@ -34,11 +34,11 @@ class TicketManagerTest {
         String from = "DME";
         String to = "HAV";
 
+
         Ticket[] expected = {};
-        Ticket[] actual = manager.search(from, to);
+        Ticket[] actual = manager.findAll(from, to, comparator);
 
         assertArrayEquals(actual, expected);
-
 
     }
 
@@ -56,12 +56,13 @@ class TicketManagerTest {
         String to = "HAV";
 
         Ticket[] expected = {};
-        Ticket[] actual = manager.search(from, to);
+        Ticket[] actual = manager.findAll(from, to, comparator);
 
         assertArrayEquals(actual, expected);
 
 
     }
+
     @Test
     public void shouldSearchIfToOnlyMatches() {
 
@@ -76,7 +77,7 @@ class TicketManagerTest {
         String to = "CCC";
 
         Ticket[] expected = {};
-        Ticket[] actual = manager.search(from, to);
+        Ticket[] actual = manager.findAll(from, to, comparator);
 
         assertArrayEquals(actual, expected);
     }
@@ -95,7 +96,7 @@ class TicketManagerTest {
         String to = "VRA";
 
         Ticket[] expected = {ticket2};
-        Ticket[] actual = manager.search(from, to);
+        Ticket[] actual = manager.findAll(from, to, comparator);
 
         assertArrayEquals(actual, expected);
     }
@@ -113,9 +114,8 @@ class TicketManagerTest {
         String from = "LED";
         String to = "CCC";
 
-        Ticket[] expected = {ticket4, ticket1, ticket5};
-        Ticket[] actual = manager.search(from, to);
-
+        Ticket[] expected = {ticket5, ticket4, ticket1};
+        Ticket[] actual = manager.findAll(from, to, comparator);
 
 
         assertArrayEquals(actual, expected);
